@@ -1,0 +1,59 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+build/
+out/
+public/build/
+.vite/
+.cache/
+.eslintcache
+
+# Bun lockfile - keep committed (do not ignore bun.lockb)
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*.local
+.env.local
+*.local
+
+# Tests & coverage
+coverage/
+coverage-*.json
+.vitest/
+nyc_output/
+test-results/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+.history/
+*.pem
+*.key
+
+# OS files
+Thumbs.db
+ehthumbs.db

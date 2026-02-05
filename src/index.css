@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 48 100% 98%;
+    --foreground: 30 10% 10%;
+
+    --card: 48 100% 100%;
+    --card-foreground: 30 10% 10%;
+
+    --popover: 48 100% 100%;
+    --popover-foreground: 30 10% 10%;
+
+    --primary: 52 100% 50%;
+    --primary-foreground: 30 10% 10%;
+
+    --secondary: 48 50% 95%;
+    --secondary-foreground: 30 10% 10%;
+
+    --muted: 48 30% 90%;
+    --muted-foreground: 30 10% 40%;
+
+    --accent: 52 100% 50%;
+    --accent-foreground: 30 10% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 48 30% 85%;
+    --input: 48 30% 85%;
+    --ring: 52 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Mutiny tokens */
+    --mutiny-yellow: 52 100% 50%;
+    --mutiny-dark: 30 10% 10%;
+    --mutiny-darker: 30 15% 5%;
+    --mutiny-gray: 48 10% 50%;
+    --mutiny-light: 48 100% 98%;
+    --mutiny-white: 0 0% 100%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(52 100% 50%) 0%, hsl(45 100% 60%) 100%);
+    --gradient-yellow: linear-gradient(135deg, hsl(52 100% 50%) 0%, hsl(45 100% 55%) 100%);
+    --gradient-light: linear-gradient(180deg, hsl(48 100% 98%) 0%, hsl(48 50% 95%) 100%);
+    --gradient-white-yellow: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(48 100% 96%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 60px hsl(52 100% 50% / 0.3);
+    --shadow-card: 0 10px 40px hsl(52 100% 50% / 0.15);
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.08);
+
+    /* Font families */
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+
+  /* Enable smooth scrolling for in-page anchor navigation */
+  html { scroll-behavior: smooth; }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-gradient {
+    background: var(--gradient-yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-light {
+    background: var(--gradient-light);
+  }
+
+  .bg-gradient-white-yellow {
+    background: var(--gradient-white-yellow);
+  }
+
+  .glow-yellow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-slide-left {
+    animation: slideLeft 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-tilt {
+    animation: tilt 10s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes tilt {
+    0%, 100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+}
