@@ -15,7 +15,7 @@
     --popover: 48 100% 100%;
     --popover-foreground: 30 10% 10%;
 
-    --primary: 52 100% 50%;
+    --primary: 53 99% 49%;
     --primary-foreground: 30 10% 10%;
 
     --secondary: 48 50% 95%;
@@ -24,7 +24,7 @@
     --muted: 48 30% 90%;
     --muted-foreground: 30 10% 40%;
 
-    --accent: 52 100% 50%;
+    --accent: 53 99% 49%;
     --accent-foreground: 30 10% 10%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,12 +32,12 @@
 
     --border: 48 30% 85%;
     --input: 48 30% 85%;
-    --ring: 52 100% 50%;
+    --ring: 53 99% 49%;
 
     --radius: 0.75rem;
 
     /* Custom Mutiny tokens */
-    --mutiny-yellow: 52 100% 50%;
+    --mutiny-yellow: 53 99% 49%; /* #f9dc01 */
     --mutiny-dark: 30 10% 10%;
     --mutiny-darker: 30 15% 5%;
     --mutiny-gray: 48 10% 50%;
@@ -45,14 +45,14 @@
     --mutiny-white: 0 0% 100%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(52 100% 50%) 0%, hsl(45 100% 60%) 100%);
-    --gradient-yellow: linear-gradient(135deg, hsl(52 100% 50%) 0%, hsl(45 100% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--mutiny-yellow)) 0%, hsl(53 99% 60%) 100%);
+    --gradient-yellow: linear-gradient(135deg, hsl(var(--mutiny-yellow)) 0%, hsl(53 99% 45%) 100%);
     --gradient-light: linear-gradient(180deg, hsl(48 100% 98%) 0%, hsl(48 50% 95%) 100%);
-    --gradient-white-yellow: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(48 100% 96%) 100%);
+    --gradient-white-yellow: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(53 99% 96%) 100%);
 
     /* Shadows */
-    --shadow-glow: 0 0 60px hsl(52 100% 50% / 0.3);
-    --shadow-card: 0 10px 40px hsl(52 100% 50% / 0.15);
+    --shadow-glow: 0 0 60px hsl(var(--mutiny-yellow) / 0.3);
+    --shadow-card: 0 10px 40px hsl(var(--mutiny-yellow) / 0.15);
     --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.08);
 
     /* Font families */
