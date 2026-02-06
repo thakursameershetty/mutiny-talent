@@ -54,11 +54,13 @@ export const BrandsMarquee = () => {
               key={index}
               className="flex-shrink-0 px-6 sm:px-10 md:px-12 py-3 sm:py-4 flex items-center justify-center"
             >
-              <img 
-                src={brand.logo} 
-                alt={brand.name}
-                className="h-10 sm:h-12 md:h-14 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
-              />
+              <div className="flex items-center justify-center w-28 sm:w-32 md:w-36 h-10 sm:h-12 md:h-14">
+                <img 
+                  src={brand.logo} 
+                  alt={brand.name}
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
             </div>
           ))}
         </div>

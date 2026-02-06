@@ -45,6 +45,7 @@ export const HeroSection = () => {
         <div className="absolute top-1/4 -left-32 w-64 md:w-96 h-64 md:h-96 bg-background/30 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -right-32 w-64 md:w-96 h-64 md:h-96 bg-background/40 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-background/20 rounded-full blur-[100px]" />
+        {/* (blobs removed per request) */}
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 pt-28 md:pt-32 pb-12 relative z-10 flex flex-col items-center">
@@ -95,7 +96,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-10 font-body px-4"
           >
-            5,000+ creators. 500+ campaigns. Real ROI. Zero noise.
+            2,000+ creators. 300+ campaigns. Real ROI. Zero noise.
           </motion.p>
 
           {/* CTAs */}
@@ -105,12 +106,15 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4"
           >
-            {/* Dialog trigger + content component */}
-            <InfluencerApplicationDialog />
-            <Button variant="heroOutline" size="hero" className="w-full sm:w-auto">
-              Creators, Get Noticed
-              <Play className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-            </Button>
+            {/* Creators trigger (opens the influencer/creator form) */}
+            <InfluencerApplicationDialog
+              trigger={<Button variant="hero" size="hero" className="w-full sm:w-auto">Creators, Get Noticed<Play className="ml-2 h-4 sm:h-5 w-4 sm:w-5" /></Button>}
+            />
+
+            {/* Brands trigger (same form) */}
+            <InfluencerApplicationDialog
+              trigger={<Button variant="heroOutline" size="hero" className="w-full sm:w-auto">Brands, Let's Go Viral</Button>}
+            />
           </motion.div>
         </div>
 
@@ -136,11 +140,11 @@ export const HeroSection = () => {
           className="w-full max-w-5xl grid grid-cols-3 gap-4 sm:gap-8 pt-8 border-t border-foreground/20"
         >
           <div className="text-center">
-            <div className="font-display text-2xl sm:text-4xl md:text-5xl text-foreground">5K+</div>
+            <div className="font-display text-2xl sm:text-4xl md:text-5xl text-foreground">2K+</div>
             <div className="text-xs sm:text-sm text-foreground/70 mt-1 uppercase tracking-wider">Creators</div>
           </div>
           <div className="text-center">
-            <div className="font-display text-2xl sm:text-4xl md:text-5xl text-foreground">500+</div>
+            <div className="font-display text-2xl sm:text-4xl md:text-5xl text-foreground">300+</div>
             <div className="text-xs sm:text-sm text-foreground/70 mt-1 uppercase tracking-wider">Campaigns</div>
           </div>
           <div className="text-center">

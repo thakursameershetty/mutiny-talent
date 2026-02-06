@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export const InfluencerApplicationDialog: React.FC = () => {
+interface InfluencerApplicationDialogProps {
+  trigger?: React.ReactNode;
+}
+
+export const InfluencerApplicationDialog: React.FC<InfluencerApplicationDialogProps> = ({ trigger }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -17,11 +21,18 @@ export const InfluencerApplicationDialog: React.FC = () => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="hero" size="hero" className="w-full sm:w-auto">
-          Brands, Let's Go Viral
-        </Button>
-      </DialogTrigger>
+      {trigger ? (
+        <DialogTrigger asChild>
+          {trigger}
+        </DialogTrigger>
+      ) : (
+        <DialogTrigger asChild>
+          <Button variant="hero" size="hero" className="w-full sm:w-auto">
+            Brands, Let's Go Viral
+          </Button>
+        </DialogTrigger>
+      )}
+
       <DialogContent className="bg-white text-black max-w-xl">
         <DialogHeader>
           <DialogTitle>

@@ -41,7 +41,7 @@ export const CreatorsSection = () => {
                 <div className="bg-card/50 border border-border rounded-lg p-3 sm:p-4">
                   <div className="flex items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-2">
                     <Users className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
-                    <span className="font-display text-xl sm:text-2xl text-foreground">4,000+</span>
+                    <span className="font-display text-xl sm:text-2xl text-foreground">1,500+</span>
                   </div>
                   <p className="text-xs sm:text-sm text-muted-foreground">Creators in 10K-100K range</p>
                 </div>
