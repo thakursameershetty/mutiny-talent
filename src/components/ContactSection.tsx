@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, ArrowRight, Zap, Instagram } from 'lucide-react';
+import BrandOrInfluencerDialog from './BrandOrInfluencerDialog';
 import mutinyLogo from '@/assets/mutiny-logo.png';
 
 export const ContactSection = () => {
@@ -59,11 +60,15 @@ export const ContactSection = () => {
           </div>
 
           {/* Main CTA */}
-          <Button variant="hero" size="hero" className="mb-4 sm:mb-6 w-full sm:w-auto">
-            <Zap className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-            Let's Do This
-            <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-          </Button>
+          <BrandOrInfluencerDialog
+            trigger={
+              <Button variant="hero" size="hero" className="mb-4 sm:mb-6 w-full sm:w-auto">
+                <Zap className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
+                Let's Do This
+                <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
+              </Button>
+            }
+          />
 
           <p className="text-sm text-muted-foreground">
             Or drop your details — we'll take it from there.

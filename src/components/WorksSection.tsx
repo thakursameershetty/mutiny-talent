@@ -3,6 +3,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { useInView } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // --- Video Imports ---
 import mehaboobVideo from "@/assets/works/Mehaboob X ThumsUp.mp4";
@@ -21,6 +24,7 @@ import telusaThumb from "@/assets/thumbnails/Telusa Manasa X Vaarahi Silks.png";
 import anjaliThumb from "@/assets/thumbnails/Anjali Pavan X AIG Hospitals.png";
 import govindThumb from "@/assets/thumbnails/Govind Gopika X Haier.png";
 import pranaviThumb from "@/assets/thumbnails/Pranavi X Oppo.png";
+
 
 export default function WorksSection() {
   const [playingCardIndex, setPlayingCardIndex] = useState(0);
@@ -71,12 +75,28 @@ export default function WorksSection() {
       id="works" 
       className="w-full h-full py-20 bg-background text-foreground"
     >
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold font-display">
-        Our Works
-      </h2>
-      <p className="max-w-7xl pl-4 mx-auto mt-2 text-muted-foreground">
-        Featured campaigns and collaborations.
-      </p>
+      {/* Updated Header Layout for Mobile Consistency */}
+      <div className="max-w-7xl mx-auto px-4 flex items-end justify-between mb-8 gap-4">
+        <div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display leading-tight">
+            Our Works
+          </h2>
+          <p className="mt-1 sm:mt-2 text-sm sm:text-base text-muted-foreground">
+            Featured campaigns and collaborations.
+          </p>
+        </div>
+        
+        {/* Link to the full Works page with responsive button sizing */}
+        <Link to="/all-works" className="shrink-0">
+          <Button 
+            variant="outline" 
+            className="flex group items-center gap-2 h-8 px-3 text-xs sm:h-10 sm:px-4 sm:text-sm"
+          >
+            See All Works 
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </Link>
+      </div>
       
       <Carousel 
         items={cards} 

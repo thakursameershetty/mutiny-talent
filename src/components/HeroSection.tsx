@@ -131,7 +131,7 @@ export const HeroSection = () => {
                 <Button 
                   variant="heroOutline" 
                   size="hero" 
-                  className="w-full sm:w-auto border-primary/20 bg-primary/5 backdrop-blur-sm hover:bg-primary/15"
+                  className="w-full sm:w-auto border-foreground bg-transparent hover:bg-transparent hover:text-foreground hover:shadow-[0_0_30px_hsl(0_0%_0%/0.3)] hover:border-foreground transition-all"
                 >
                   Creators, Get Noticed
                   <Play className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
