@@ -90,7 +90,7 @@ export const FoundersSection = () => {
                   <div className="inline-block px-3 sm:px-4 py-1 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
                     <VariableProximity
                       label={founder.role}
-                      className="font-display text-primary-foreground inline-block text-xs sm:text-sm font-semibold uppercase tracking-wider"
+                      className="!font-body text-primary-foreground inline-block text-xs sm:text-sm font-semibold uppercase tracking-wider"
                       fromFontVariationSettings={'"wght" 400, "opsz" 9'}
                       toFontVariationSettings={'"wght" 900, "opsz" 40'}
                       containerRef={headerRef}

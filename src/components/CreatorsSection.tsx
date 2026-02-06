@@ -67,7 +67,7 @@ export const CreatorsSection = () => {
                   <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
                   <VariableProximity
                     label={"Exclusive Perks"}
-                    className="font-display text-primary-foreground inline-block text-xs sm:text-sm font-semibold uppercase tracking-wider"
+                    className="!font-body text-primary-foreground inline-block text-xs sm:text-sm font-semibold uppercase tracking-wider"
                     fromFontVariationSettings={'"wght" 400, "opsz" 9'}
                     toFontVariationSettings={'"wght" 900, "opsz" 40'}
                     containerRef={headerRef}

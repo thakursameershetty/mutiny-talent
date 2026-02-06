@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Play } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { PortfolioGallery } from '@/components/PortfolioGallery';
 import { motion } from 'framer-motion';
 import VariableProximity from '@/components/VariableProximity';
@@ -40,26 +40,30 @@ export const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-gradient-hero">
-      {/* Background Elements */}
+      {/* Background Elements - Warmer Glass Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-64 md:w-96 h-64 md:h-96 bg-background/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-64 md:w-96 h-64 md:h-96 bg-background/40 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-background/20 rounded-full blur-[100px]" />
-        {/* (blobs removed per request) */}
+        {/* Top Left Blob - Increased opacity for more color */}
+        <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/40 rounded-full blur-[100px] mix-blend-multiply" />
+        
+        {/* Bottom Right Blob */}
+        <div className="absolute bottom-0 -right-20 w-96 h-96 bg-primary/40 rounded-full blur-[120px] mix-blend-multiply" />
+        
+        {/* Center Glow - Stronger yellow presence */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[1000px] h-[500px] md:h-[1000px] bg-primary/15 rounded-full blur-[100px]" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 pt-28 md:pt-32 pb-12 relative z-10 flex flex-col items-center">
         
         {/* Main Text Content */}
         <div ref={containerRef} className="max-w-5xl mx-auto text-center mb-8">
-          {/* Tag */}
+          {/* Tag - Tinted Yellow */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-foreground/30 bg-background/50 mb-6 md:mb-8"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-primary/20 bg-primary/10 backdrop-blur-md mb-6 md:mb-8 shadow-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-foreground animate-pulse-slow" />
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse-slow" />
             <span className="text-xs sm:text-sm font-medium text-foreground uppercase tracking-wider">
               India's Culture-First Influencer Powerhouse
             </span>
@@ -106,14 +110,33 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4"
           >
-            {/* Creators trigger (opens the influencer/creator form) */}
+            {/* PRIMARY: Brands (Hero Variant) */}
             <InfluencerApplicationDialog
-              trigger={<Button variant="hero" size="hero" className="w-full sm:w-auto">Creators, Get Noticed<Play className="ml-2 h-4 sm:h-5 w-4 sm:w-5" /></Button>}
+              mode="brand"
+              trigger={
+                <Button 
+                  variant="hero" 
+                  size="hero" 
+                  className="w-full sm:w-auto shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-shadow"
+                >
+                  Brands, Let's Go Viral
+                </Button>
+              }
             />
 
-            {/* Brands trigger (same form) */}
+            {/* SECONDARY: Creators (HeroOutline Variant) */}
             <InfluencerApplicationDialog
-              trigger={<Button variant="heroOutline" size="hero" className="w-full sm:w-auto">Brands, Let's Go Viral</Button>}
+              mode="creator"
+              trigger={
+                <Button 
+                  variant="heroOutline" 
+                  size="hero" 
+                  className="w-full sm:w-auto border-primary/20 bg-primary/5 backdrop-blur-sm hover:bg-primary/15"
+                >
+                  Creators, Get Noticed
+                  <Play className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
+                </Button>
+              }
             />
           </motion.div>
         </div>
@@ -137,7 +160,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="w-full max-w-5xl grid grid-cols-3 gap-4 sm:gap-8 pt-8 border-t border-foreground/20"
+          className="w-full max-w-5xl grid grid-cols-3 gap-4 sm:gap-8 pt-8 border-t border-foreground/10 mt-12"
         >
           <div className="text-center">
             <div className="font-display text-2xl sm:text-4xl md:text-5xl text-foreground">2K+</div>

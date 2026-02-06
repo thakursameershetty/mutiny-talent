@@ -8,6 +8,7 @@ import { CreatorsSection } from '@/components/CreatorsSection';
 import { FoundersSection } from '@/components/FoundersSection';
 import { ReachSection } from '@/components/ReachSection';
 import { ContactSection, Footer } from '@/components/ContactSection';
+import WorksSection from "@/components/WorksSection";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <MoviePostersAnimation />
       <CreatorsSection />
       <FoundersSection />
+      <WorksSection />
       <ReachSection />
       <ContactSection />
       <Footer />

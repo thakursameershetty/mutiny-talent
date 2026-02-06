@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Phone, Mail, ArrowRight, Zap } from 'lucide-react';
+import { Phone, Mail, ArrowRight, Zap, Instagram } from 'lucide-react';
 import mutinyLogo from '@/assets/mutiny-logo.png';
 
 export const ContactSection = () => {
@@ -43,6 +43,17 @@ export const ContactSection = () => {
               <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
               <span className="text-foreground text-sm sm:text-base">
                 connect@mutinytalent.com
+              </span>
+            </a>
+            <a
+              href="https://www.instagram.com/mutinytalent?igsh=MXYyajA1YWsxdndjNA=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-5 sm:px-6 py-3 bg-background/90 border border-foreground/20 rounded-lg hover:border-[#E1306C] hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCAF45] transition-all duration-500 ease-in-out hover:scale-105 group"
+            >
+              <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-foreground group-hover:text-white transition-colors duration-500" />
+              <span className="text-foreground group-hover:text-white transition-colors duration-500 text-sm sm:text-base">
+                Instagram
               </span>
             </a>
           </div>
