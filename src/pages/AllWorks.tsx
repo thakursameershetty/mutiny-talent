@@ -42,7 +42,7 @@ import sreemukhi from "@/assets/top-creators/sreemukhi.png";
 import tejaswini from "@/assets/top-creators/tejaswini-gowda.png";
 import telusamanasaa from "@/assets/top-creators/telusamanasaa.png";
 
-// Placeholder Top Creators Data - Replace src with your wide images (430x142)
+// Placeholder Top Creators Data
 const CREATORS_DATA: ImageData[] = [
   { id: "alekhya", src: alekhyaharika, alt: "Alekhya Harika", title: "Alekhya Harika" },
   { id: "anchorravi", src: anchorravi, alt: "Anchor Ravi", title: "Anchor Ravi" },
@@ -223,15 +223,15 @@ export default function AllWorks() {
           </p>
         </div>
         
-        <div className="h-[600px] w-full flex items-center justify-center">
+        <div className="h-[700px] w-full flex items-center justify-center">
           <SphereImageGrid 
             images={CREATORS_DATA}
-            containerSize={600}
-              sphereRadius={180}
-            baseImageScale={0.12} // Adjusted for wide images
-            aspectRatio={3} // 430 / 142 ≈ 3
+            containerSize={800}    // Increased for better spacing
+            sphereRadius={220}     // Increased for better spacing
+            baseImageScale={0.18}  // Increased for larger images
+            aspectRatio={3}
             autoRotate={true}
-            autoRotateSpeed={0.7}
+            autoRotateSpeed={1}
             dragSensitivity={0.8}
           />
         </div>

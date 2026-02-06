@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { motion, useInView, cubicBezier } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
-// Existing Zee5 Image Import (Keep this one)
+// Existing Zee5 Image Import
 import zee5Img from "@/assets/ott/zee5.png";
 
 interface OTTPlatform {
@@ -10,7 +11,6 @@ interface OTTPlatform {
   name: string;
   src: string;
   alt: string;
-  // We'll use this to apply specific background colors or object-fit styles
   className?: string; 
 }
 
@@ -27,8 +27,8 @@ const OTT_PLATFORMS: OTTPlatform[] = [
     name: "Prime Video", 
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Amazon_Prime_Video_logo_%282024%29.svg/960px-Amazon_Prime_Video_logo_%282024%29.svg.png", 
     alt: "Prime Video",
-    // Blue fill, zoomed in slightly (scale-125), containment for the logo itself
-    className: "bg-[#047aff] object-contain p-2 scale-110" 
+    // Blue fill, contain mode for logo, zoomed
+    className: "bg-[#047aff] object-contain p-4 scale-110" 
   },
   { 
     id: "jio-hotstar", 
@@ -42,8 +42,8 @@ const OTT_PLATFORMS: OTTPlatform[] = [
     name: "Zee5", 
     src: zee5Img, 
     alt: "Zee5",
-    // Black fill, scaled up
-    className: "bg-black object-contain p-2 scale-110" 
+    // Black fill, contain mode for logo, zoomed
+    className: "bg-black object-contain p-4 scale-110" 
   },
   { 
     id: "sony-liv", 
@@ -62,10 +62,6 @@ const OTT_PLATFORMS: OTTPlatform[] = [
   { 
     id: "etv-win", 
     name: "ETV Win", 
-    // Using a specific placeholder or logo URL as requested. 
-    // Note: The googleusercontent link provided earlier was broken/private.
-    // I will use a placeholder ETV logo if available, or keep the previous one if it works for you locally.
-    // For now, using the one provided, assuming it renders in your environment.
     src: "https://play-lh.googleusercontent.com/K8n1SqHnqpb3lLndbLMw-dCFoF8K2O_u3hm8pYPc5AL1lLqJrrT7o_wHSdMIeEgtZ0s=w3840-h2160-rw", 
     alt: "ETV Win",
     className: "object-cover"
@@ -130,23 +126,27 @@ export const OTTSection = () => {
           animate={isInView ? "visible" : "hidden"}
           className="space-y-8"
         >
-          {/* Top Row - 4 platforms (single-column list on mobile) */}
+          {/* Top Row - 4 platforms */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 justify-items-center">
             {topRow.map((platform) => (
               <motion.div
                 key={platform.id}
                 variants={itemVariants}
-                className="w-full max-w-xs"
+                className="w-full max-w-[294px]"
               >
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      {/* Container: fixed visual area ~294x128, responsive on mobile (stacked list) */}
-                      <div className="group relative cursor-pointer overflow-hidden rounded-[30px] shadow-sm hover:shadow-lg transition-all duration-300 h-[128px] w-full max-w-[294px]">
+                      {/* Fixed dimensions container */}
+                      <div className="group relative cursor-pointer overflow-hidden rounded-[30px] shadow-sm hover:shadow-lg transition-all duration-300 h-[128px] w-full">
                         <img
                           src={platform.src}
                           alt={platform.alt}
-                          className={`w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 ${platform.className}`}
+                          // Uses cn() to safely merge classes. Default is object-contain, but platform.className can override to object-cover.
+                          className={cn(
+                            "w-full h-full object-contain transition-transform duration-500 group-hover:scale-105", 
+                            platform.className
+                          )}
                         />
                       </div>
                     </TooltipTrigger>
@@ -159,22 +159,25 @@ export const OTTSection = () => {
             ))}
           </div>
 
-          {/* Bottom Row - 3 platforms (centered, single-column on mobile) */}
+          {/* Bottom Row - 3 platforms */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center md:max-w-2xl md:mx-auto">
             {bottomRow.map((platform) => (
               <motion.div
                 key={platform.id}
                 variants={itemVariants}
-                className="w-full max-w-xs"
+                className="w-full max-w-[294px]"
               >
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className="group relative cursor-pointer overflow-hidden rounded-[30px] shadow-sm hover:shadow-lg transition-all duration-300 h-[128px] w-full max-w-[294px]">
+                      <div className="group relative cursor-pointer overflow-hidden rounded-[30px] shadow-sm hover:shadow-lg transition-all duration-300 h-[128px] w-full">
                         <img
                           src={platform.src}
                           alt={platform.alt}
-                          className={`w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 ${platform.className}`}
+                          className={cn(
+                            "w-full h-full object-contain transition-transform duration-500 group-hover:scale-105", 
+                            platform.className
+                          )}
                         />
                       </div>
                     </TooltipTrigger>
