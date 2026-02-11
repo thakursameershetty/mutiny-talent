@@ -1,8 +1,9 @@
-import React from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import React, { useState } from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 interface InfluencerApplicationDialogProps {
   trigger?: React.ReactNode;
@@ -13,24 +14,68 @@ export const InfluencerApplicationDialog: React.FC<InfluencerApplicationDialogPr
   trigger, 
   mode = "creator" 
 }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const isBrand = mode === "brand";
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const form = e.currentTarget;
-    const data = new FormData(form);
-    const payload = Object.fromEntries(data.entries());
+    const formData = new FormData(form);
     
-    // Add the type to the payload
-    const submissionData = { ...payload, type: mode };
+    // [!code ++] Create a clean, formatted object for the email
+    const submissionData = {
+      // 1. FormSubmit Settings
+      _subject: `New ${mode.toUpperCase()} Application: ${formData.get("fullName")}`,
+      _template: "box", // Nice box design
+      _captcha: "false",
+
+      // 2. Readable Data
+      "Application Type": mode === 'brand' ? "Brand" : "Influencer",
+      "Full Name": formData.get("fullName"),
+      "Mobile Number": formData.get("mobile"),
+      "Email Address": formData.get("email"),
+      "Location": formData.get("location"),
+      
+      // 3. Conditional Fields
+      ...(isBrand 
+        ? { "Company Name": formData.get("companyName") } 
+        : { "Instagram Handle": formData.get("instagram") }
+      ),
+      
+      // 4. Price Field (Specific to this dialog)
+      ...(formData.get("price") ? { "Proposed Price": formData.get("price") } : {}),
+    };
     
-    // TODO: replace with API call
-    // eslint-disable-next-line no-console
-    console.log(`${isBrand ? "Brand" : "Creator"} application submitted:`, submissionData);
+    try {
+      // Use your test email (change to Connect@mutinytalent.com when ready)
+      const response = await fetch("https://formsubmit.co/ajax/connect@mutinytalent.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      if (response.ok) {
+        toast.success("Application submitted successfully!");
+        setIsOpen(false);
+        form.reset();
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       {trigger ? (
         <DialogTrigger asChild>
           {trigger}
@@ -56,26 +101,23 @@ export const InfluencerApplicationDialog: React.FC<InfluencerApplicationDialogPr
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="grid gap-4 mt-4">
+          <input type="text" name="_honey" style={{ display: 'none' }} />
           
-          {/* 1. Full Name */}
           <div>
             <Label htmlFor="fullName">Full Name</Label>
             <Input id="fullName" name="fullName" placeholder="Enter your full name" required />
           </div>
 
-          {/* 2. Mobile Number */}
           <div>
             <Label htmlFor="mobile">Mobile Number</Label>
             <Input id="mobile" name="mobile" type="tel" placeholder="Enter your mobile number" required />
           </div>
 
-          {/* 3. Email Address */}
           <div>
             <Label htmlFor="email">Email Address</Label>
             <Input id="email" name="email" type="email" placeholder="Enter your email address" required />
           </div>
 
-          {/* 4. Company Name (Brand) OR Instagram ID (Influencer) */}
           {isBrand ? (
             <div>
               <Label htmlFor="companyName">Company Name</Label>
@@ -88,26 +130,33 @@ export const InfluencerApplicationDialog: React.FC<InfluencerApplicationDialogPr
             </div>
           )}
 
-          {/* 5. Location */}
           <div>
             <Label htmlFor="location">Location</Label>
             <Input id="location" name="location" placeholder="City, Country" />
           </div>
 
-          {/* 6. Price for Promotion */}
           <div>
             <Label htmlFor="price">Price for Promotion</Label>
             <Input id="price" name="price" placeholder="Enter your price" />
           </div>
 
-          {/* 7. Submit Application */}
           <DialogFooter className="mt-4 gap-3 sm:gap-0">
-            <DialogClose asChild>
-              <Button variant="outline" type="button" className="w-full sm:w-1/3">Cancel</Button>
-            </DialogClose>
+            <Button 
+              variant="outline" 
+              type="button" 
+              onClick={() => setIsOpen(false)}
+              className="w-full sm:w-1/3"
+              disabled={isSubmitting}
+            >
+              Cancel
+            </Button>
             
-            <Button type="submit" className="w-full sm:w-2/3 bg-black text-mutiny-yellow hover:bg-black/90 hover:text-white transition-colors">
-              Submit Application
+            <Button 
+              type="submit" 
+              className="w-full sm:w-2/3 bg-black text-mutiny-yellow hover:bg-black/90 hover:text-white transition-colors"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Submit Application"}
             </Button>
           </DialogFooter>
         </form>

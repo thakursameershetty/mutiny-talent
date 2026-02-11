@@ -13,7 +13,7 @@ const founders = [
   },
   {
     name: 'Pragnatej Kondala',
-    role: 'Co-founder & MD',
+    role: 'Co-founder & CPO', // [!code ++] Updated Role
     image: pragnatejImage,
     description: '',
   },

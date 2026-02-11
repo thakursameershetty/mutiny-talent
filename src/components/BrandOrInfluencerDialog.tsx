@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 interface BrandOrInfluencerDialogProps {
   trigger?: React.ReactNode;
@@ -10,23 +11,65 @@ interface BrandOrInfluencerDialogProps {
 
 export const BrandOrInfluencerDialog: React.FC<BrandOrInfluencerDialogProps> = ({ trigger }) => {
   const [type, setType] = useState<"brand" | "creator">("creator");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const isBrand = type === "brand";
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const payload = Object.fromEntries(data.entries());
+    setIsSubmitting(true);
 
-    // include selected type
-    const submissionData = { ...payload, type };
-    // TODO: send to API
-    // eslint-disable-next-line no-console
-    console.log("Application submitted:", submissionData);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // [!code ++] Create a clean, formatted object for the email
+    const submissionData = {
+      // 1. FormSubmit Settings
+      _subject: `New ${type.toUpperCase()} Inquiry: ${formData.get("fullName")}`,
+      _template: "box", // Makes the email look like a professional table
+      _captcha: "false",
+
+      // 2. Readable Data (Renaming keys like 'fullName' to 'Full Name')
+      "Applicant Type": type === 'brand' ? "Brand Partner" : "Content Creator",
+      "Full Name": formData.get("fullName"),
+      "Mobile Number": formData.get("mobile"),
+      "Email Address": formData.get("email"),
+      "Location": formData.get("location"),
+      
+      // 3. Conditional Fields
+      ...(isBrand 
+        ? { "Company Name": formData.get("companyName") } 
+        : { "Instagram Handle": formData.get("instagram") }
+      ),
+    };
+
+    try {
+      // Use your test email (change to Connect@mutinytalent.com when ready)
+      const response = await fetch("https://formsubmit.co/ajax/connect@mutinytalent.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      if (response.ok) {
+        toast.success("Inquiry sent successfully!");
+        setIsOpen(false);
+        form.reset();
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       {trigger ? (
         <DialogTrigger asChild>{trigger}</DialogTrigger>
       ) : (
@@ -46,6 +89,8 @@ export const BrandOrInfluencerDialog: React.FC<BrandOrInfluencerDialogProps> = (
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="grid gap-4 mt-4">
+          <input type="text" name="_honey" style={{ display: 'none' }} />
+          
           <div>
             <Label htmlFor="applicantType">I am a</Label>
             <select
@@ -93,12 +138,22 @@ export const BrandOrInfluencerDialog: React.FC<BrandOrInfluencerDialogProps> = (
           </div>
 
           <DialogFooter className="mt-4 gap-3 sm:gap-0">
-            <DialogClose asChild>
-              <Button variant="outline" type="button" className="w-full sm:w-1/3">Cancel</Button>
-            </DialogClose>
+            <Button 
+              variant="outline" 
+              type="button" 
+              onClick={() => setIsOpen(false)}
+              className="w-full sm:w-1/3"
+              disabled={isSubmitting}
+            >
+              Cancel
+            </Button>
 
-            <Button type="submit" className="w-full sm:w-2/3 bg-black text-mutiny-yellow hover:bg-black/90 hover:text-white transition-colors">
-              Submit Application
+            <Button 
+              type="submit" 
+              className="w-full sm:w-2/3 bg-black text-mutiny-yellow hover:bg-black/90 hover:text-white transition-colors"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Submit Application"}
             </Button>
           </DialogFooter>
         </form>
