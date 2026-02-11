@@ -9,11 +9,16 @@ import { FoundersSection } from '@/components/FoundersSection';
 import { ReachSection } from '@/components/ReachSection';
 import { ContactSection, Footer } from '@/components/ContactSection';
 import WorksSection from "@/components/WorksSection";
+import SEO from '@/components/SEO';
 
 const Index = () => {
   return (
-    // UPDATED: Added overflow-x-hidden to prevent horizontal scrolling issues
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEO 
+        title="Mutiny Talent | A Chai Bisket Company"
+        description="Mutiny Talent connects top creators with brands. We are a premier talent management agency by Chai Bisket."
+      />
+
       <Navbar />
       <HeroSection />
       <BrandsMarquee />

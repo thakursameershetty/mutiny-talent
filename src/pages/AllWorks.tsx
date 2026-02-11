@@ -7,6 +7,7 @@ import SphereImageGrid, { ImageData } from "@/components/ui/img-sphere";
 import { OTTSection } from "@/components/OTTSection";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { useInView, motion } from "framer-motion";
+import SEO from "@/components/SEO";
 
 // --- Video Imports ---
 import mehaboobVideo from "@/assets/works/Mehaboob X ThumsUp.mp4";
@@ -171,6 +172,11 @@ export default function AllWorks() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-body">
+      <SEO 
+        title="Our Work | Mutiny Talent"
+        description="Explore the latest campaigns, brand collaborations, and influencer marketing projects by Mutiny Talent."
+      />
+      
       <Navbar />
 
       {/* Back Button */}
