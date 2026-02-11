@@ -5,14 +5,28 @@ interface SEOProps {
   description: string;
   name?: string;
   type?: string;
+  keywords?: string;
+  canonical?: string;
 }
 
-export default function SEO({ title, description, name = 'Mutiny Talent', type = 'website' }: SEOProps) {
+export default function SEO({ 
+  title, 
+  description, 
+  name = 'Mutiny Talent', 
+  type = 'website',
+  keywords,
+  canonical
+}: SEOProps) {
   return (
     <Helmet>
       {/* Standard metadata tags */}
       <title>{title}</title>
       <meta name='description' content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      {canonical && <link rel="canonical" href={canonical} />}
+      
+      {/* Robots: Tell Google to index this page */}
+      <meta name="robots" content="index, follow" />
       
       {/* Facebook tags */}
       <meta property="og:type" content={type} />

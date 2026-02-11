@@ -17,6 +17,8 @@ const Index = () => {
       <SEO 
         title="Mutiny Talent | A Chai Bisket Company"
         description="Mutiny Talent connects top creators with brands. We are a premier talent management agency by Chai Bisket."
+        keywords="Influencer Marketing, Talent Management, Chai Bisket, Creator Economy, Brand Collaboration"
+        canonical="https://www.mutinytalent.com/" 
       />
 
       <Navbar />

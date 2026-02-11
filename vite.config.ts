@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    Sitemap({ hostname: 'https://mutinytalent.in' }) // Replaced with your likely domain
+    Sitemap({ hostname: 'https://mutinytalent.in' }) // Ensure this matches your real domain
   ].filter(Boolean),
   resolve: {
     alias: {
