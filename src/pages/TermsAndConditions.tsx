@@ -14,7 +14,7 @@ const TermsAndConditions = () => {
   const handleScroll = () => {
     setShowScrollTop(window.scrollY > 300);
   };
-
+  
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
