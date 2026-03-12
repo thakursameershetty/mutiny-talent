@@ -136,6 +136,17 @@ export const Footer = () => {
              </div>
           </div>
         </div>
+
+        {/* Bottom Footer */}
+        <div className="border-t border-border/50 pt-8 mt-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Mutiny Talent. All rights reserved.
+          </p>
+          <div className="flex gap-6">
+            <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="/terms-and-conditions" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

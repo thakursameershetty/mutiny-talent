@@ -5,7 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AllWorks from "./pages/AllWorks"; // Import new page
+import AllWorks from "./pages/AllWorks";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/all-works" element={<AllWorks />} /> {/* Add Route */}
+          <Route path="/all-works" element={<AllWorks />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
