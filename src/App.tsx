@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import AllWorks from "./pages/AllWorks";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import DeleteAccountPolicy from "./pages/DeleteAccountPolicy";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/all-works" element={<AllWorks />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/delete-account-policy" element={<DeleteAccountPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -145,6 +145,7 @@ export const Footer = () => {
           <div className="flex gap-6">
             <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
             <a href="/terms-and-conditions" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</a>
+            <a href="/delete-account-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Delete Account Policy</a>
           </div>
         </div>
       </div>
